@@ -13,11 +13,14 @@
       @delete-task="deleteTask" 
       :tasks="tasks"
     />
+    <router-view></router-view>
+    <Footer />
   </div>
 </template>
 
 <script>
 import Header from './components/Header.vue';
+import Footer from './components/Footer.vue';
 import Tasks from './components/Tasks.vue';
 import AddTask from './components/AddTask.vue';
 
@@ -25,6 +28,7 @@ export default {
   name: 'App',
   components: {
     Header,
+    Footer,
     Tasks,
     AddTask
   },
@@ -39,6 +43,7 @@ export default {
       this.showAddTask = !this.showAddTask
     },
     async addTask(task) {
+      this.showAddTask = !this.showAddTask;
       const res = await fetch('api/tasks', {
         method: 'POST',
         headers: {
